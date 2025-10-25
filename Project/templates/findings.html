@@ -1,0 +1,17 @@
+<!-- templates/findings.html -->
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Findings</title></head>
+  <body>
+    <h1>Findings</h1>
+    <a href="/">Back</a>
+    {% for f in findings %}
+      <div style="border:1px solid #ccc; padding:0.6rem; margin:0.4rem;">
+        <div><strong>{{f[2]}}</strong> ({{f[5]}})</div>
+        <div><small>URL: {{f[1]}}</small></div>
+        <pre style="white-space:pre-wrap">{{f[4]}}</pre>
+        <div><small>{{f[6]}}</small></div>
+      </div>
+    {% endfor %}
+  </body>
+</html>
