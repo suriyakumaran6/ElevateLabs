@@ -1,0 +1,40 @@
+<!-- templates/index.html -->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Suriya Scanner - Dashboard</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width:900px; margin:2rem auto; }
+      input[type=text]{width:70%;}
+      .findings { margin-top:1rem;}
+      .card { padding:0.8rem; border:1px solid #ddd; margin-bottom:0.6rem; border-radius:6px; }
+    </style>
+  </head>
+  <body>
+    <h1>Suriya - Web Vulnerability Scanner</h1>
+    <form method="post">
+      <label>Target (e.g., http://localhost:3000)</label><br/>
+      <input type="text" name="target" value="{{request.host_url}}" />
+      <button type="submit">Start Scan</button>
+    </form>
+
+    <div class="findings">
+      <h2>Recent Findings</h2>
+      {% if findings %}
+        {% for f in findings %}
+          <div class="card">
+            <strong>{{f[2]}}</strong> — <em>{{f[5]}}</em><br/>
+            <small>URL: {{f[1]}}</small><br/>
+            <pre style="white-space:pre-wrap">{{f[4]}}</pre>
+            <small>Found at: {{f[6]}}</small>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No findings yet.</p>
+      {% endif %}
+    </div>
+
+    <p><a href="/findings">View all findings</a></p>
+  </body>
+</html>
